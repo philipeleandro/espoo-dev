@@ -38,9 +38,17 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(resource)
-    return surveys_path if resource.student?
+    if resource.provider == 'google_oauth2'
+      stored_location_for(resource) || root_path
+    else
+      return surveys_path if resource.student?
 
-    super
+      super
+    end
+  end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    new_user_session_path
   end
 
   def json_content_type_header?
