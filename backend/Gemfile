@@ -92,3 +92,9 @@ gem 'sprockets', '4.0.3'
 gem 'reek'
 
 gem "slack-notifier"
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection', '~> 1.0' 
